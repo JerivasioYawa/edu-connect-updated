@@ -59,19 +59,6 @@ public class Invoice {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Invoice invoice = (Invoice) o;
-        return Objects.equals(invoiceId, invoice.invoiceId) && Objects.equals(paymentId, invoice.paymentId) && Objects.equals(invoiceNumber, invoice.invoiceNumber) && Objects.equals(issuedDate, invoice.issuedDate) && Objects.equals(dueDate, invoice.dueDate) && Objects.equals(totalAmount, invoice.totalAmount) && Objects.equals(taxAmount, invoice.taxAmount);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(invoiceId, paymentId, invoiceNumber, issuedDate, dueDate, totalAmount, taxAmount);
-    }
-
-    @Override
     public String toString() {
         return "invoice{" +
                 "invoiceId=" + invoiceId +

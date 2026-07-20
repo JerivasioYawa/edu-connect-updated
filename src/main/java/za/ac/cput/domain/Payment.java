@@ -73,18 +73,6 @@ public class Payment {
         return paymentMethod;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Payment payment = (Payment) o;
-        return Objects.equals(paymentId, payment.paymentId) && Objects.equals(sessionId, payment.sessionId) && Objects.equals(amount, payment.amount) && Objects.equals(tutorEarnings, payment.tutorEarnings) && Objects.equals(platformFee, payment.platformFee) && status == payment.status && Objects.equals(paidAt, payment.paidAt) && paymentMethod == payment.paymentMethod;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(paymentId, sessionId, amount, tutorEarnings, platformFee, status, paidAt, paymentMethod);
-    }
 
     @Override
     public String toString() {
@@ -146,7 +134,7 @@ public class Payment {
         }
 
         public Builder setPaymentMethod(PaymentMethod paymentMethod) {
-          this.paymentMethod = paymentMethod;
+            this.paymentMethod = paymentMethod;
             return this;
         }
 

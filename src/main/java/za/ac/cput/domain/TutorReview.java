@@ -75,18 +75,6 @@ public class TutorReview {
         return isPublic;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TutorReview review = (TutorReview) o;
-        return rating == review.rating && isPublic == review.isPublic && Objects.equals(reviewId, review.reviewId) && Objects.equals(sessionId, review.sessionId) && Objects.equals(studentId, review.studentId) && Objects.equals(tutorProfileId, review.tutorProfileId) && Objects.equals(comment, review.comment) && Objects.equals(strengths, review.strengths) && Objects.equals(improvements, review.improvements) && Objects.equals(reviewedAt, review.reviewedAt);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(reviewId, sessionId, studentId, tutorProfileId, rating, comment, strengths, improvements, reviewedAt, isPublic);
-    }
 
     @Override
     public String toString() {
@@ -184,6 +172,7 @@ public class TutorReview {
 
             return this;
         }
+
         public TutorReview build() {
             return new TutorReview(this);
         }
