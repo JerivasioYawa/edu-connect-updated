@@ -2,8 +2,14 @@ package za.ac.cput.domain;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
-public class invoice {
+/* Invoice.java
+    Invoice class
+    Author: Ayabonga Jervasio Yawa (221241558)
+    Date: 19 July 2026
+*/
+public class Invoice {
     private Long invoiceId;
     private Long paymentId;
     private String invoiceNumber;
@@ -14,7 +20,7 @@ public class invoice {
 
     private BigDecimal taxAmount;
 
-    public invoice(Builder builder) {
+    private Invoice(Builder builder) {
         this.invoiceId = builder.invoiceId;
         this.paymentId = builder.paymentId;
         this.invoiceNumber = builder.invoiceNumber;
@@ -50,6 +56,19 @@ public class invoice {
 
     public BigDecimal getTaxAmount() {
         return taxAmount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Invoice invoice = (Invoice) o;
+        return Objects.equals(invoiceId, invoice.invoiceId) && Objects.equals(paymentId, invoice.paymentId) && Objects.equals(invoiceNumber, invoice.invoiceNumber) && Objects.equals(issuedDate, invoice.issuedDate) && Objects.equals(dueDate, invoice.dueDate) && Objects.equals(totalAmount, invoice.totalAmount) && Objects.equals(taxAmount, invoice.taxAmount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(invoiceId, paymentId, invoiceNumber, issuedDate, dueDate, totalAmount, taxAmount);
     }
 
     @Override
@@ -109,7 +128,7 @@ public class invoice {
             return this;
         }
 
-        public Builder Copy(invoice invoice) {
+        public Builder Copy(Invoice invoice) {
             this.invoiceId = invoice.invoiceId;
             this.paymentId = invoice.paymentId;
             this.invoiceNumber = invoice.invoiceNumber;
@@ -120,8 +139,8 @@ public class invoice {
             return this;
         }
 
-        public invoice build() {
-            return new invoice(this);
+        public Invoice build() {
+            return new Invoice(this);
         }
     }
 }

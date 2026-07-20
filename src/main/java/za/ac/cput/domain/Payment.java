@@ -1,7 +1,17 @@
 package za.ac.cput.domain;
 
+import za.ac.cput.enums.PaymentMethod;
+import za.ac.cput.enums.PaymentStatus;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Objects;
+
+/* Payment.java
+    Payment class
+    Author: Ayabonga Jervasio Yawa (221241558)
+    Date: 19 July 2026
+*/
 
 public class Payment {
 
@@ -16,7 +26,7 @@ public class Payment {
 
     private LocalDateTime paidAt;
 
-    private String paymentMethod;
+    private PaymentMethod paymentMethod;
 
     private Payment(Builder builder) {
         this.paymentId = builder.paymentId;
@@ -27,6 +37,7 @@ public class Payment {
         this.status = builder.status;
         this.paidAt = builder.paidAt;
         this.paymentMethod = builder.paymentMethod;
+
 
     }
 
@@ -58,16 +69,23 @@ public class Payment {
         return paidAt;
     }
 
-    public String getPaymentMethod() {
+    public PaymentMethod getPaymentMethod() {
         return paymentMethod;
     }
 
-    public enum  PaymentStatus {
-        PENDING,
-        PAID,
-        REFUNDED,
-        FAILED
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Payment payment = (Payment) o;
+        return Objects.equals(paymentId, payment.paymentId) && Objects.equals(sessionId, payment.sessionId) && Objects.equals(amount, payment.amount) && Objects.equals(tutorEarnings, payment.tutorEarnings) && Objects.equals(platformFee, payment.platformFee) && status == payment.status && Objects.equals(paidAt, payment.paidAt) && paymentMethod == payment.paymentMethod;
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(paymentId, sessionId, amount, tutorEarnings, platformFee, status, paidAt, paymentMethod);
+    }
+
     @Override
     public String toString() {
         return "Payment{" +
@@ -90,7 +108,7 @@ public class Payment {
         private BigDecimal platformFee;
         private PaymentStatus status;
         private LocalDateTime paidAt;
-        private String paymentMethod;
+        private PaymentMethod paymentMethod;
 
         public Builder setPaymentId(Long paymentId) {
             this.paymentId = paymentId;
@@ -127,8 +145,8 @@ public class Payment {
             return this;
         }
 
-        public Builder setPaymentMethod(String paymentMethod) {
-            this.paymentMethod = paymentMethod;
+        public Builder setPaymentMethod(PaymentMethod paymentMethod) {
+          this.paymentMethod = paymentMethod;
             return this;
         }
 
